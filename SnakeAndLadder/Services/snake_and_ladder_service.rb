@@ -97,6 +97,7 @@ class SnakeAndLadderService
             if (has_player_won?(curr_player))
                 puts "#{curr_player.name} wins the game!"
                 @snake_and_ladder_board.player_pieces.delete(curr_player.id)
+                return curr_player
             else
                 @players.unshift(curr_player)
             end
