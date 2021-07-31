@@ -5,9 +5,6 @@ require_relative '../Models/snake_and_ladder_board.rb'
 require_relative 'dice_service.rb'
 
 class SnakeAndLadderService
-    attr_accessor :no_of_dices
-    attr_writer :should_continue_till_last_player
-
     DEFAULT_BOARD_SIZE = 100
     DEFAULT_NO_OF_DICE = 1
 
