@@ -2,6 +2,7 @@ require_relative '../Models/snake.rb'
 require_relative '../Models/ladder.rb'
 require_relative '../Models/player.rb'
 require_relative '../Models/snake_and_ladder_board.rb'
+require_relative '../Exceptions/bad_request_exception.rb'
 require_relative 'dice_service.rb'
 
 class SnakeAndLadderService
@@ -28,6 +29,8 @@ class SnakeAndLadderService
     end
 
     def set_players(players)
+        raise BadRequestException if players.empty?
+
         @players = []
         @@initial_number_of_players = players.size
         player_pieces = {}
