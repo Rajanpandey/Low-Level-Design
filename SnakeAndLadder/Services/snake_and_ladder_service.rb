@@ -11,11 +11,8 @@ class SnakeAndLadderService
     DEFAULT_BOARD_SIZE = 100
     DEFAULT_NO_OF_DICE = 1
 
-    @@snake_and_ladder_board = SnakeAndLadderBoard.new(DEFAULT_BOARD_SIZE);
     @@initial_number_of_players = 0
     @@players = Queue.new
-    @@is_game_completed = false
-    @@no_of_dices = 0
     @@should_continue_till_last_player = false
     @@should_allow_multiple_dice_roll_in_six = false
 
