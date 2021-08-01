@@ -5,25 +5,57 @@ require_relative 'Services/snake_and_ladder_service.rb'
 
 class Driver
     def main
-        no_of_snakes = gets.chomp.to_i
         snakes = []
-        for i in (1..no_of_snakes)
-            snake = Snake.new(gets.chomp.to_i, gets.chomp.to_i)
-            snakes << snake
-        end
-
-        no_of_ladders = gets.chomp.to_i
         ladders = []
-        for i in (1..no_of_ladders)
-            ladder = Ladder.new(gets.chomp.to_i, gets.chomp.to_i)
-            ladders << ladder
-        end
-
-        no_of_players = gets.chomp.to_i
         players = []
-        for i in (1..no_of_players)
-            player = Player.new(gets.chomp)
-            players << player
+
+        if ARGV[0]
+            line_number = 0
+
+            file = File.readlines(ARGV[0])
+            no_of_snakes = file[line_number].to_i
+            for i in ((line_number + 1)..(line_number + no_of_snakes))
+                snake_input = file[i].split.map(&:to_i)
+                snake = Snake.new(snake_input[0], snake_input[1])
+                snakes << snake
+                line_number += 1
+            end
+
+            line_number += 1
+            no_of_ladders = file[line_number].to_i
+            for i in ((line_number + 1)..(line_number + no_of_ladders))
+                ladder_input = file[i].split.map(&:to_i)
+                ladder = Ladder.new(ladder_input[0], ladder_input[1])
+                ladders << ladder
+                line_number += 1
+            end
+
+            line_number += 1
+            no_of_players = file[line_number].to_i
+            player_input = file[line_number + 1].split
+            player_input.each do |player|
+                players << Player.new(player)
+            end
+        else
+            no_of_snakes = gets.chomp.to_i
+            for i in (1..no_of_snakes)
+                snake_input = gets.chomp.split.map(&:to_i)
+                snake = Snake.new(snake_input[0], snake_input[1])
+                snakes << snake
+            end
+
+            no_of_ladders = gets.chomp.to_i
+            for i in (1..no_of_ladders)
+                ladder_input = gets.chomp.split.map(&:to_i)
+                ladder = Ladder.new(ladder_input[0], ladder_input[1])
+                ladders << ladder
+            end
+
+            no_of_players = gets.chomp.to_i
+            player_input = gets.chomp.split
+            player_input.each do |player|
+                players << Player.new(player)
+            end
         end
 
         snake_and_ladder_service = SnakeAndLadderService.new
@@ -36,44 +68,3 @@ class Driver
 end
 
 driver = Driver.new.main
-
-# Sample Input: (9 snakes, 8 ladders, 2 players)
-# 9
-# 62
-# 5
-# 33
-# 6
-# 49
-# 9
-# 88
-# 16
-# 41
-# 20
-# 56
-# 53
-# 98
-# 64
-# 93
-# 73
-# 95
-# 75
-# 8
-# 2
-# 37
-# 27
-# 46
-# 10
-# 32
-# 51
-# 68
-# 61
-# 79
-# 65
-# 84
-# 71
-# 91
-# 81
-# 100
-# 2
-# Rajan
-# Rohit
