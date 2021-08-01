@@ -29,7 +29,7 @@ class SnakeAndLadderService
     end
 
     def set_players(players)
-        raise BadRequestException if players.empty?
+        raise BadRequestException.new("No players found") if players.empty?
 
         @players = []
         @@initial_number_of_players = players.size

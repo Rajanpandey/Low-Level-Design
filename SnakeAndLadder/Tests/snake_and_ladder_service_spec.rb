@@ -3,7 +3,7 @@ require_relative '../Models/ladder.rb'
 require_relative '../Models/player.rb'
 require_relative '../Services/snake_and_ladder_service.rb'
 
-describe "#Driver" do
+describe SnakeAndLadderService do
     snakes = [Snake.new(11, 42)]
     ladders = [Ladder.new(36, 58)]
     players = [Player.new('Rajan'), Player.new('Rajat')]
